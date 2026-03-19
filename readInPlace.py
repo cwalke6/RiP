@@ -45,7 +45,7 @@ class ReadInPlaceApp:
         self.first_half_label = tk.Label(
             self.root, 
             text="Loa", 
-            font=self.word_font, 
+            font=("Arial", 48),
             fg="black",
             width=20,  # Fixed width in characters (prevents label width changes)
             anchor="e"  # Align text to right (east) within the fixed-width label
@@ -98,9 +98,11 @@ class ReadInPlaceApp:
     
     def update_text(self):
         """Update the displayed text to show the next word with middle letter highlighted."""
+        print("---update_text---")
         if self.word_index < len(self.split_text):
             word = self.split_text[self.word_index]
-            
+            print(f"---Updated word: {word}")
+
             # Calculate the middle letter position
             middle_index = len(word) // 2
             
