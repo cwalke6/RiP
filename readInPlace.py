@@ -1,14 +1,12 @@
 from tkinter import *
 
-# TODO LIST
-# TODO: Create a pause button
-# TODO: fix WPM text at the bottom moving around
+# TODO: Make the window a updated set size.
 
 window = Tk()
-window.geometry("700x500")
-window.title("Read in Place")
+window.geometry("1280x720")
+window.title("(RiP) - Read in Place")
 
-rawTextToRead = """Generating random paragraphs can be an excellent way for writers to get their creative flow going at the beginning of the day. The writer has no idea what topic the random paragraph will be about when it appears. This forces the writer to use creativity to complete one of three common writing challenges. The writer can use the paragraph as the first one of a short story and build upon it. A second option is to use the random paragraph somewhere in a short story they create. The third option is to have the random paragraph be the ending paragraph in a short story. No matter which of these challenges is undertaken, the writer is forced to use creativity to incorporate the paragraph into their writing."""
+rawTextToRead = """The world is always full of the sound of waves. The little fishes, abandoning themselves to the waves, dance and sing, and play, but who knows the heart of the sea, a hundred feet down? Who knows its depth?"""
 splitTextToRead = rawTextToRead.split()
 
 middleLetterIndex = 0
@@ -45,8 +43,8 @@ secondHalfWordToRead.pack(side=LEFT, expand=False, fill=X)
 
 updateRate = 150 # milliseconds
 wordsPerMinute = 60000 //updateRate # Meaning if we want to go from (WPM -> updateRate): updateRate = 60000 / WPM
-wordsPerMinuteLabel = Label(window, text=f"{str(wordsPerMinute)} WPM", font=("Arial", 12))
-wordsPerMinuteLabel.pack(side=BOTTOM)
+wordsPerMinuteLabel = Label(window, text=f"{str(wordsPerMinute)} WPM", font=("Arial", 24))
+wordsPerMinuteLabel.place(relx = 0.5, rely = 0.9)
 
 window.after(updateRate, updateText)
 
