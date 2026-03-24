@@ -6,11 +6,17 @@ window = Tk()
 window.geometry("1280x720")
 window.title("(RiP) - Read in Place")
 
-rawTextToRead = """The world is always full of the sound of waves. The little fishes, abandoning themselves to the waves, dance and sing, and play, but who knows the heart of the sea, a hundred feet down? Who knows its depth?"""
+wordFrame = Frame(window)
+wordFrame.pack(expand=True)
+
+rawTextToRead = """He woke at half-past two, an hour which long experience had taught him brings panic intensity to all awkward thoughts. Experience had also taught him that a further waking at the proper hour of eight showed the folly of such panic.""" 
 splitTextToRead = rawTextToRead.split()
 
 middleLetterIndex = 0
 wordIndex = 0
+
+updateRate = 500 # milliseconds
+wordsPerMinute = 60000 //updateRate # Meaning if we want to go from (WPM -> updateRate): updateRate = 60000 / WPM
 
 def updateText():
     global wordIndex
@@ -31,18 +37,17 @@ def updateText():
         wordIndex += 1
         window.after(updateRate, updateText)
 
-firstHalfWordToRead = Label(window, text="Loa".rjust(20), font=("Arial", 48), fg="black")
-firstHalfWordToRead.pack(side=LEFT,expand=False, fill=X)
 
-middleLetterToRead = Label(window, text="d", font=("Arial", 48), fg="red")
+firstHalfWordToRead = Label(wordFrame, text="Loa", font=("Arial", 48), fg="black")
+firstHalfWordToRead.pack(side=LEFT)
+
+middleLetterToRead = Label(wordFrame, text="d", font=("Arial", 48), fg="red")
 middleLetterToRead.pack(side=LEFT, expand=False)
 
-secondHalfWordToRead = Label(window, text="ing".ljust(20), font=("Arial", 48), fg="black")
-secondHalfWordToRead.pack(side=LEFT, expand=False, fill=X)
+secondHalfWordToRead = Label(wordFrame, text="ing", font=("Arial", 48), fg="black")
+secondHalfWordToRead.pack(side=LEFT, expand=False)
 
 
-updateRate = 150 # milliseconds
-wordsPerMinute = 60000 //updateRate # Meaning if we want to go from (WPM -> updateRate): updateRate = 60000 / WPM
 wordsPerMinuteLabel = Label(window, text=f"{str(wordsPerMinute)} WPM", font=("Arial", 24))
 wordsPerMinuteLabel.place(relx = 0.5, rely = 0.9)
 
