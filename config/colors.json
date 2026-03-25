@@ -1,0 +1,40 @@
+{
+    "themes": {
+        "template": {
+            "bg": "#",
+            "hl": "#",
+            "normal": "#",
+            "WPM": "#"
+        },
+        "Eulbink": {
+            "bg": "#201533",
+            "hl": "#0ce6f2",
+            "normal": "#ffffff",
+            "WPM": "#203562"
+        },
+        "Twilight": {
+            "bg": "#292831",
+            "hl": "#ee8695",
+            "normal": "#fbbbad",
+            "WPM": "#4a7a96"
+        },
+        "Midnight_Abaze": {
+            "bg": "#130208",
+            "hl": "#ff8274",
+            "normal": "#7c183c",
+            "WPM": "#31051e"
+        },
+        "IceCream": {
+            "bg": "#fff6d3",
+            "hl": "#f9a875",
+            "normal": "#eb6b6f",
+            "WPM": "#7c3f58"
+        },
+        "LavaGB": {
+            "bg": "#4a2480",
+            "hl": "#ff8e80",
+            "normal": "#c53a9d",
+            "WPM": "#c53a9d"
+        }
+    }
+}
