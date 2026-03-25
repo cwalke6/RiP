@@ -1,0 +1,28 @@
+{
+    "themes": {
+        "template": {
+            "background": "#",
+            "highlight": "#",
+            "normal": "#",
+            "WPM": "#"
+        },
+        "Eulbink": {
+            "background": "#201533",
+            "highlight": "#0ce6f2",
+            "normal": "#ffffff",
+            "WPM": "#203562"
+        },
+        "Twilight": {
+            "background": "#292831",
+            "highlight": "#ee8695",
+            "normal": "#fbbbad",
+            "WPM": "#4a7a96"
+        },
+        "Midnight_Abaze": {
+            "background": "#130208",
+            "highlight": "#d53c6a",
+            "normal": "#7c183c",
+            "WPM": "#31051e"
+        }
+    }
+}
