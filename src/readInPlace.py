@@ -6,21 +6,33 @@ window = Tk()
 window.geometry("1280x720")
 window.title("(RiP) - Read in Place")
 
-rawTextToRead = """This world . . . belongs to the strong, my friend! The ritual of our existence is based on the strong getting stronger by devouring the weak. We must face up to this. No more than right that it should be this way. We must learn to accept it as a law of the natural world. The rabbits accept their role in the ritual and recognize the wolf is the strong. In defense, the rabbit becomes sly and frightened and elusive and he digs holes and hides when the wolf is about. And he endures, he goes on. He knows his place. He most certainly doesn't challenge the wolf to combat. Now, would that be wise? Would it?"""
+# Color Scheme Stuff
+with open("config/colors.json", "r") as file:
+    colorSchemesData = json.load(file)
+
+colorSchemeName = "LavaGB"
+wBackground = colorSchemesData["themes"][colorSchemeName]["bg"]
+tHighlight = colorSchemesData["themes"][colorSchemeName]["hl"]
+tNormal = colorSchemesData["themes"][colorSchemeName]["normal"]
+tWPM = colorSchemesData["themes"][colorSchemeName]["WPM"]
+
+window.configure(background=wBackground)
+
+rawTextToRead = """This world belongs to the strong, my friend! The ritual of our existence is based on the strong getting stronger by devouring the weak. We must face up to this. No more than right that it should be this way. We must learn to accept it as a law of the natural world. The rabbits accept their role in the ritual and recognize the wolf is the strong. In defense, the rabbit becomes sly and frightened and elusive and he digs holes and hides when the wolf is about. And he endures, he goes on. He knows his place. He most certainly doesn't challenge the wolf to combat. Now, would that be wise? Would it?"""
 splitTextToRead = rawTextToRead.split()
 wordIndex = 0
-updateRate = 500
+updateRate = 200 
 wordsPerMinute = 60000 // updateRate
 
 # Fixed center point of the window
 CENTER_X = 640
 CENTER_Y = 360
 
-middleLetterToRead = Label(window, text="d", font=("Arial", 48), fg="red")
+middleLetterToRead = Label(window, text="d", font=("Arial", 48), fg=tHighlight, bg=wBackground)
 middleLetterToRead.place(x=CENTER_X, y=CENTER_Y, anchor="center")  # PINNED - never moves
 
-firstHalfWordToRead = Label(window, text="Loa", font=("Arial", 48), fg="black")
-secondHalfWordToRead = Label(window, text="ing", font=("Arial", 48), fg="black")
+firstHalfWordToRead = Label(window, text="Loa", font=("Arial", 48), fg=tNormal, bg=wBackground)
+secondHalfWordToRead = Label(window, text="ing", font=("Arial", 48), fg=tNormal, bg=wBackground)
 
 def updateText():
     global wordIndex
@@ -56,7 +68,7 @@ def updateText():
         wordIndex += 1
         window.after(updateRate, updateText)
 
-wordsPerMinuteLabel = Label(window, text=f"{str(wordsPerMinute)} WPM", font=("Arial", 24))
+wordsPerMinuteLabel = Label(window, text=f"{str(wordsPerMinute)} WPM", font=("Arial", 24), fg=tWPM, bg=wBackground)
 wordsPerMinuteLabel.place(relx=0.45, rely=0.9)
 
 window.after(updateRate, updateText)
