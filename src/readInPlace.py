@@ -6,11 +6,15 @@ window = Tk()
 window.geometry("1280x720")
 window.title("(RiP) - Read in Place")
 
-# Color Scheme Stuff
-with open("config/colors.json", "r") as file:
-    colorSchemesData = json.load(file)
+# Color Loading
+def loadColorSchemes():
+    with open("config/colors.json", "r") as file:
+        colorSchemesData = json.load(file)
+        return colorSchemesData
 
-colorSchemeName = "LavaGB"
+colorSchemesData = loadColorSchemes()
+colorSchemeName = "Midnight_Abaze"
+# Text variables
 wBackground = colorSchemesData["themes"][colorSchemeName]["bg"]
 tHighlight = colorSchemesData["themes"][colorSchemeName]["hl"]
 tNormal = colorSchemesData["themes"][colorSchemeName]["normal"]
@@ -34,20 +38,24 @@ middleLetterToRead.place(x=CENTER_X, y=CENTER_Y, anchor="center")  # PINNED - ne
 firstHalfWordToRead = Label(window, text="Loa", font=("Arial", 48), fg=tNormal, bg=wBackground)
 secondHalfWordToRead = Label(window, text="ing", font=("Arial", 48), fg=tNormal, bg=wBackground)
 
+def splitWord(word):
+    middleLetterIndex = len(word) // 2
+
+    firstHalf = word[:middleLetterIndex]
+    middleLetter = word[middleLetterIndex]
+    secondHalf = word[middleLetterIndex + 1:]
+    
+    return [firstHalf, middleLetter, secondHalf]
+
 def updateText():
     global wordIndex
     if wordIndex < len(splitTextToRead):
         word = splitTextToRead[wordIndex]
-        middleLetterIndex = len(word) // 2
-
-        firstHalf = word[:middleLetterIndex]
-        middleLetter = word[middleLetterIndex]
-        secondHalf = word[middleLetterIndex + 1:]
-
+        parsedWord = splitWord(word)
         # Update text
-        firstHalfWordToRead.config(text=firstHalf)
-        middleLetterToRead.config(text=middleLetter)
-        secondHalfWordToRead.config(text=secondHalf)
+        firstHalfWordToRead.config(text=parsedWord[0])
+        middleLetterToRead.config(text=parsedWord[1])
+        secondHalfWordToRead.config(text=parsedWord[2])
 
         # Force tkinter to calculate new label sizes BEFORE repositioning
         window.update_idletasks()
